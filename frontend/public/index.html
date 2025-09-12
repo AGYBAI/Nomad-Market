@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Nomad-Market</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              sol: {
+                50: '#f4f3ff',
+                100: '#ebe9fe',
+                200: '#d9d6fe',
+                300: '#beb5fd',
+                400: '#9c8cfb',
+                500: '#7c5cf7',
+                600: '#6d3df0',
+                700: '#5e2edc',
+                800: '#4e26b8',
+                900: '#422196',
+                950: '#2a1065',
+                purple: '#9945FF',
+                green: '#14F195',
+                blue: '#00D4FF',
+                dark: '#0F0F23',
+                darker: '#0A0A1A'
+              },
+              gray: {
+                850: '#1a1a2e',
+                900: '#16213e',
+                950: '#0f172a'
+              }
+            },
+            boxShadow: { 
+              glow: '0 0 0 3px rgb(153 69 255 / 20%), 0 0 20px rgb(0 179 242 / 20%)',
+              'sol-glow': '0 0 20px rgba(153, 69, 255, 0.3)',
+              'sol-card': '0 4px 20px rgba(153, 69, 255, 0.1)',
+              'sol-hover': '0 8px 32px rgba(153, 69, 255, 0.2)'
+            },
+            backgroundImage: {
+              'sol-gradient': 'linear-gradient(135deg, #9945FF 0%, #14F195 100%)',
+              'sol-gradient-dark': 'linear-gradient(135deg, #7c5cf7 0%, #14F195 100%)',
+              'sol-bg': 'linear-gradient(135deg, #0F0F23 0%, #1a1a2e 100%)',
+              'card-gradient': 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)'
+            },
+            animation: {
+              'pulse-glow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'float': 'float 3s ease-in-out infinite'
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0px)' },
+                '50%': { transform: 'translateY(-10px)' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background: linear-gradient(135deg, #0F0F23 0%, #1a1a2e 100%);
+        min-height: 100vh;
+      }
+      .glass-effect {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .sol-text-gradient {
+        background: linear-gradient(135deg, #9945FF 0%, #14F195 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    </style>
+  </head>
+  <body class="dark">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>
