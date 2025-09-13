@@ -48,14 +48,17 @@ export default function Profile() {
     <div className="space-y-8">
       <div className="text-center">
         <h1 className="text-4xl font-bold sol-text-gradient mb-2">Profile</h1>
-        <p className="text-gray-400">Manage your account and view your activity</p>
+        <p className="text-xl text-gray-400">Manage your account and view your activity</p>
       </div>
       
       <div className="grid lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-6">
-          <div className="glass-effect rounded-2xl p-6 border border-white/20 shadow-sol-card">
-            <h2 className="text-xl font-bold text-white mb-4">Account Settings</h2>
-            <div className="space-y-4">
+          <div className="glass-effect rounded-2xl p-8 border border-white/20 shadow-sol-card hover:shadow-sol-hover transition-all duration-300">
+            <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <span className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white text-sm">👤</span>
+              Account Settings
+            </h2>
+            <div className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
                 <input 
@@ -119,16 +122,30 @@ export default function Profile() {
             </div>
           </div>
           
-          <div className="glass-effect rounded-2xl p-6 border border-white/20 shadow-sol-card">
-            <h2 className="text-xl font-bold text-white mb-4">Transaction History</h2>
-            <div className="space-y-3 max-h-80 overflow-auto">
+          <div className="glass-effect rounded-2xl p-8 border border-white/20 shadow-sol-card hover:shadow-sol-hover transition-all duration-300">
+            <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <span className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-white text-sm">📊</span>
+              Transaction History
+            </h2>
+            <div className="space-y-4 max-h-80 overflow-auto custom-scrollbar">
               {data.transactions.map(t => (
-                <div key={t.id} className="glass-effect rounded-xl p-4 border border-white/10">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="text-white font-medium">{t.amount} SOL</div>
-                    <div className="text-xs text-gray-400">{new Date(t.created_at).toLocaleString()}</div>
+                <div key={t.id} className="glass-effect rounded-xl p-4 border border-white/10 hover:border-purple-500/30 transition-all duration-200">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+                        <span className="text-xs font-bold text-white">S</span>
+                      </div>
+                      <div>
+                        <div className="text-white font-bold text-lg">{t.amount} SOL</div>
+                        <div className="text-xs text-gray-400">Transaction</div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-xs text-gray-400">{new Date(t.created_at).toLocaleString()}</div>
+                      <div className="text-green-400 text-xs font-medium">✓ Completed</div>
+                    </div>
                   </div>
-                  <div className="font-mono text-xs text-gray-500 break-all">{t.tx_hash}</div>
+                  <div className="font-mono text-xs text-gray-500 break-all bg-black/30 p-2 rounded border border-white/10">{t.tx_hash}</div>
                 </div>
               ))}
               {data.transactions.length === 0 && (
@@ -139,9 +156,12 @@ export default function Profile() {
         </div>
         
         <div className="space-y-6">
-          <div className="glass-effect rounded-2xl p-6 border border-white/20 shadow-sol-card">
-            <h2 className="text-lg font-bold text-white mb-4">Wallet</h2>
-            <div className="space-y-4">
+          <div className="glass-effect rounded-2xl p-8 border border-white/20 shadow-sol-card hover:shadow-sol-hover transition-all duration-300">
+            <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <span className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center text-white text-sm">💰</span>
+              Wallet
+            </h2>
+            <div className="space-y-6">
               <div>
                 <div className="text-sm text-gray-400 mb-2">Address</div>
                 <div className="font-mono text-xs text-white bg-black/30 p-3 rounded-lg border border-white/10 break-all">
@@ -149,46 +169,81 @@ export default function Profile() {
                 </div>
               </div>
               
-              <div className="text-center">
-                <div className="text-sm text-gray-400 mb-2">Balance</div>
-                <div className="text-3xl font-bold flex items-center justify-center gap-2 text-white">
-                  <img src={SolIcon} alt="SOL" className="w-6 h-6" />
+              <div className="text-center p-6 rounded-xl bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20">
+                <div className="text-sm text-gray-400 mb-3 font-medium">Current Balance</div>
+                <div className="text-4xl font-bold flex items-center justify-center gap-3 text-white mb-2">
+                  <img src={SolIcon} alt="SOL" className="w-8 h-8" />
                   {Number(data.user.balance).toFixed(2)}
-                  <span className="text-sm text-gray-400 font-normal">SOL</span>
+                  <span className="text-lg text-gray-400 font-normal">SOL</span>
                 </div>
-                <div className="text-sm text-gray-500 mt-1">
+                <div className="text-lg text-gray-400 font-mono">
                   ≈ ${(Number(data.user.balance) * 23.45).toFixed(2)} USD
+                </div>
+                <div className="mt-4 flex items-center justify-center gap-2">
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <span className="text-green-400 text-sm font-medium">Live Price</span>
                 </div>
               </div>
             </div>
           </div>
           
-          <div className="glass-effect rounded-2xl p-6 border border-white/20 shadow-sol-card">
-            <h2 className="text-lg font-bold text-white mb-4">My Tokens</h2>
-            <div className="space-y-3 max-h-60 overflow-auto">
+          <div className="glass-effect rounded-2xl p-8 border border-white/20 shadow-sol-card hover:shadow-sol-hover transition-all duration-300">
+            <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <span className="w-8 h-8 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center text-white text-sm">🪙</span>
+              My Tokens
+            </h2>
+            <div className="space-y-4 max-h-60 overflow-auto custom-scrollbar">
               {data.tokens.map(t => (
-                <div key={t.id} className="glass-effect rounded-xl p-3 border border-white/10">
-                  <div className="text-white font-medium text-sm">Token #{t.id}</div>
-                  <div className="text-gray-400 text-xs">{t.title}</div>
-                  <div className="text-sol-green text-xs font-medium">{t.price} SOL</div>
+                <div key={t.id} className="glass-effect rounded-xl p-4 border border-white/10 hover:border-purple-500/30 transition-all duration-200">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="text-white font-bold text-lg">Token #{t.id}</div>
+                    <div className="text-green-400 text-sm font-medium flex items-center gap-1">
+                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                      Owned
+                    </div>
+                  </div>
+                  <div className="text-gray-300 text-sm mb-2">{t.title}</div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+                      <span className="text-[8px] font-bold text-white">S</span>
+                    </div>
+                    <span className="text-green-400 font-bold">{t.price} SOL</span>
+                  </div>
                 </div>
               ))}
               {data.tokens.length === 0 && (
-                <div className="text-center py-4 text-gray-400 text-sm">No tokens owned</div>
+                <div className="text-center py-8 text-gray-400">
+                  <div className="text-4xl mb-2">🪙</div>
+                  <div className="text-sm">No tokens owned</div>
+                </div>
               )}
             </div>
           </div>
           
-          <div className="glass-effect rounded-2xl p-6 border border-white/20 shadow-sol-card">
-            <h2 className="text-lg font-bold text-white mb-4">Notifications</h2>
-            <div className="space-y-2 max-h-48 overflow-auto">
+          <div className="glass-effect rounded-2xl p-8 border border-white/20 shadow-sol-card hover:shadow-sol-hover transition-all duration-300">
+            <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <span className="w-8 h-8 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full flex items-center justify-center text-white text-sm">🔔</span>
+              Notifications
+            </h2>
+            <div className="space-y-3 max-h-48 overflow-auto custom-scrollbar">
               {data.notifications.map(n => (
-                <div key={n.id} className="glass-effect rounded-lg p-3 border border-white/10 text-sm text-gray-300">
-                  {n.message}
+                <div key={n.id} className="glass-effect rounded-lg p-4 border border-white/10 hover:border-purple-500/30 transition-all duration-200">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-xs text-white">🔔</span>
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-gray-200 text-sm leading-relaxed">{n.message}</div>
+                      <div className="text-xs text-gray-500 mt-1">{new Date(n.created_at).toLocaleString()}</div>
+                    </div>
+                  </div>
                 </div>
               ))}
               {data.notifications.length === 0 && (
-                <div className="text-center py-4 text-gray-400 text-sm">No notifications</div>
+                <div className="text-center py-8 text-gray-400">
+                  <div className="text-4xl mb-2">🔔</div>
+                  <div className="text-sm">No notifications</div>
+                </div>
               )}
             </div>
           </div>
